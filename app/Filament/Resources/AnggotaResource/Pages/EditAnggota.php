@@ -16,4 +16,10 @@ class EditAnggota extends EditRecord
             Actions\DeleteAction::make(),
         ];
     }
+
+    protected function getRedirectUrl(): string
+    {
+        // Redirect ke halaman index setelah selesai mengedit
+        return AnggotaResource::getUrl('index');
+    }
 }
