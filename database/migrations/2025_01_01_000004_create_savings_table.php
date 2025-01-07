@@ -11,17 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('simpanans', function (Blueprint $table) {
+        Schema::create('savings', function (Blueprint $table) {
             $table->id(); // Primary key
-            $table->unsignedBigInteger('anggota_id'); // Relasi ke tabel anggota
-            $table->decimal('jumlah', 15, 2); // Jumlah simpanan
-            $table->string('jenis'); // Jenis simpanan (wajib, sukarela, pokok)
-            $table->date('tanggal'); // Tanggal simpanan
+            $table->unsignedBigInteger('member_id'); // Relasi ke tabel anggota
+            $table->decimal('amount', 15, 2); // Jumlah simpanan
+            $table->string('type'); // Jenis simpanan (wajib, sukarela, pokok)
+            $table->date('date'); // Tanggal simpanan
             $table->string('status')->default('pending'); // Status simpanan (pending, disetujui, ditolak)
             $table->timestamps();
 
             // Relasi ke tabel anggota
-            $table->foreign('anggota_id')->references('id')->on('anggotas')->onDelete('cascade');
+            $table->foreign('member_id')->references('id')->on('members')->onDelete('cascade');
 
         });
     }
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('simpanans');
+        Schema::dropIfExists('savings');
     }
 };

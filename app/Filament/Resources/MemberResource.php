@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\AnggotaResource\Pages;
-use App\Filament\Resources\AnggotaResource\RelationManagers;
-use App\Models\Anggota;
+use App\Filament\Resources\MemberResource\Pages;
+use App\Filament\Resources\MemberResource\RelationManagers;
+use App\Models\Member;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -14,9 +14,9 @@ use Illuminate\Support\Facades\Gate;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class AnggotaResource extends Resource
+class MemberResource extends Resource
 {
-    protected static ?string $model = Anggota::class;
+    protected static ?string $model = Member::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
@@ -24,18 +24,18 @@ class AnggotaResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('nama')
-                    ->label('Nama')
+                Forms\Components\TextInput::make('name')
+                    ->label('Name')
                     ->required(),
                 Forms\Components\TextInput::make('email')
                     ->label('Email')
                     ->email()
                     ->required(),
-                Forms\Components\TextInput::make('telepon')
-                    ->label('Telepon')
+                Forms\Components\TextInput::make('phone')
+                    ->label('Phone')
                     ->required(),
-                Forms\Components\TextInput::make('alamat')
-                    ->label('Alamat')
+                Forms\Components\TextInput::make('address')
+                    ->label('Address')
                     ->required(),
             ]);
     }
@@ -44,14 +44,14 @@ class AnggotaResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('nama')
-                    ->label('Nama'),
+                Tables\Columns\TextColumn::make('name')
+                    ->label('Name'),
                 Tables\Columns\TextColumn::make('email')
                     ->label('Email'),
-                Tables\Columns\TextColumn::make('telepon')
-                    ->label('Telepon'),
-                Tables\Columns\TextColumn::make('alamat')
-                    ->label('Alamat'),
+                Tables\Columns\TextColumn::make('phone')
+                    ->label('Phone'),
+                Tables\Columns\TextColumn::make('address')
+                    ->label('Address'),
             ])
             ->filters([
                 //
@@ -75,16 +75,16 @@ class AnggotaResource extends Resource
 
     public static function getNavigationGroup(): ?string
     {
-        return 'Manajemen Anggota';
+        return 'Member Management';
     }
 
 
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListAnggotas::route('/'),
-            'create' => Pages\CreateAnggota::route('/create'),
-            'edit' => Pages\EditAnggota::route('/{record}/edit'),
+            'index' => Pages\ListMembers::route('/'),
+            'create' => Pages\CreateMember::route('/create'),
+            'edit' => Pages\EditMember::route('/{record}/edit'),
         ];
     }
 

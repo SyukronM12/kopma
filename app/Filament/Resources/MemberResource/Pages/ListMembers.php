@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Filament\Resources\PinjamanResource\Pages;
+namespace App\Filament\Resources\MemberResource\Pages;
 
-use App\Filament\Resources\PinjamanResource;
+use App\Filament\Resources\MemberResource;
 use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
 
-class ListPinjamen extends ListRecords
+class ListMembers extends ListRecords
 {
-    protected static string $resource = PinjamanResource::class;
+    protected static string $resource = MemberResource::class;
 
     protected function getHeaderActions(): array
     {

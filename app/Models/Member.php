@@ -5,9 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Anggota extends Model
+class Member extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['nama', 'email', 'telepon', 'alamat'];
+    protected $fillable = ['name', 'email', 'phone', 'address'];
 }

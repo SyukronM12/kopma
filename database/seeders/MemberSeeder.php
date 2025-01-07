@@ -4,20 +4,20 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\Anggota;
+use App\Models\Member;
 
-class AnggotaSeeder extends Seeder
+class MemberSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        Anggota::create([
-            'nama' => "Syukron Ma'mun",
+        Member::create([
+            'name' => "Syukron Ma'mun",
             'email' => 'syukron@example.com',
-            'telepon' => '081234567890',
-            'alamat' => 'Jl. Tulip No. 5',
+            'phone' => '081234567890',
+            'address' => 'Jl. Tulip No. 5',
         ]);
     }
 }

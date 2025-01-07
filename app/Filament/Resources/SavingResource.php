@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\PinjamanResource\Pages;
-use App\Filament\Resources\PinjamanResource\RelationManagers;
-use App\Models\Pinjaman;
+use App\Filament\Resources\SavingResource\Pages;
+use App\Filament\Resources\SavingResource\RelationManagers;
+use App\Models\Saving;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -13,10 +13,9 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class PinjamanResource extends Resource
+class SavingResource extends Resource
 {
-    protected static ?string $model = Pinjaman::class;
-
+    protected static ?string $model = Saving::class;
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     public static function form(Form $form): Form
@@ -56,9 +55,9 @@ class PinjamanResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListPinjamen::route('/'),
-            'create' => Pages\CreatePinjaman::route('/create'),
-            'edit' => Pages\EditPinjaman::route('/{record}/edit'),
+            'index' => Pages\SavingLists::route('/'),
+            'create' => Pages\CreateSaving::route('/create'),
+            'edit' => Pages\EditSaving::route('/{record}/edit'),
         ];
     }
 }

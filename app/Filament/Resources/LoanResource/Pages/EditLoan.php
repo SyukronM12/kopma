@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Filament\Resources\SimpananResource\Pages;
+namespace App\Filament\Resources\LoanResource\Pages;
 
-use App\Filament\Resources\SimpananResource;
+use App\Filament\Resources\LoanResource;
 use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
 
-class EditSimpanan extends EditRecord
+class EditLoan extends EditRecord
 {
-    protected static string $resource = SimpananResource::class;
+    protected static string $resource = LoanResource::class;
 
     protected function getHeaderActions(): array
     {

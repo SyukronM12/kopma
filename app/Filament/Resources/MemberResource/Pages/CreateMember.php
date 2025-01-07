@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Filament\Resources\AnggotaResource\Pages;
+namespace App\Filament\Resources\MemberResource\Pages;
 
-use App\Filament\Resources\AnggotaResource;
+use App\Filament\Resources\MemberResource;
 use Illuminate\Database\Eloquent\Model;
 use Filament\Resources\Pages\CreateRecord;
 
-class CreateAnggota extends CreateRecord
+class CreateMember extends CreateRecord
 {
-    protected static string $resource = AnggotaResource::class;
+    protected static string $resource = MemberResource::class;
 
     protected function handleRecordCreation(array $data): Model
     {
@@ -18,6 +18,6 @@ class CreateAnggota extends CreateRecord
     protected function getRedirectUrl(): string
     {
         // Redirect ke halaman index setelah berhasil membuat anggota
-        return AnggotaResource::getUrl('index');
+        return MemberResource::getUrl('index');
     }
 }

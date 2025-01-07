@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Filament\Resources\AnggotaResource\Pages;
+namespace App\Filament\Resources\MemberResource\Pages;
 
-use App\Filament\Resources\AnggotaResource;
+use App\Filament\Resources\MemberResource;
 use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
 
-class EditAnggota extends EditRecord
+class EditMember extends EditRecord
 {
-    protected static string $resource = AnggotaResource::class;
+    protected static string $resource = MemberResource::class;
 
     protected function getHeaderActions(): array
     {
@@ -20,6 +20,6 @@ class EditAnggota extends EditRecord
     protected function getRedirectUrl(): string
     {
         // Redirect ke halaman index setelah selesai mengedit
-        return AnggotaResource::getUrl('index');
+        return MemberResource::getUrl('index');
     }
 }

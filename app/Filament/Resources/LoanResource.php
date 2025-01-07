@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\SimpananResource\Pages;
-use App\Filament\Resources\SimpananResource\RelationManagers;
-use App\Models\Simpanan;
+use App\Filament\Resources\LoanResource\Pages;
+use App\Filament\Resources\LoanResource\RelationManagers;
+use App\Models\Loan;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -13,9 +13,9 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class SimpananResource extends Resource
+class LoanResource extends Resource
 {
-    protected static ?string $model = Simpanan::class;
+    protected static ?string $model = Loan::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
@@ -53,12 +53,17 @@ class SimpananResource extends Resource
         ];
     }
 
+    public static function getNavigationGroup(): ?string
+    {
+        return 'Loan Management';
+    }
+
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListSimpanans::route('/'),
-            'create' => Pages\CreateSimpanan::route('/create'),
-            'edit' => Pages\EditSimpanan::route('/{record}/edit'),
+            'index' => Pages\LoanLists::route('/'),
+            'create' => Pages\CreateLoan::route('/create'),
+            'edit' => Pages\EditLoan::route('/{record}/edit'),
         ];
     }
 }

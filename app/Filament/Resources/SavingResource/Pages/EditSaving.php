@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Filament\Resources\PinjamanResource\Pages;
+namespace App\Filament\Resources\SavingResource\Pages;
 
-use App\Filament\Resources\PinjamanResource;
+use App\Filament\Resources\SavingResource;
 use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
 
-class EditPinjaman extends EditRecord
+class EditSaving extends EditRecord
 {
-    protected static string $resource = PinjamanResource::class;
+    protected static string $resource = SavingResource::class;
 
     protected function getHeaderActions(): array
     {

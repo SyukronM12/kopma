@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Filament\Resources\SimpananResource\Pages;
+namespace App\Filament\Resources\SavingResource\Pages;
 
-use App\Filament\Resources\SimpananResource;
+use App\Filament\Resources\SavingResource;
 use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
 
-class ListSimpanans extends ListRecords
+class SavingLists extends ListRecords
 {
-    protected static string $resource = SimpananResource::class;
+    protected static string $resource = SavingResource::class;
 
     protected function getHeaderActions(): array
     {
