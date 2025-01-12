@@ -3,16 +3,17 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\MemberResource\Pages;
-use App\Filament\Resources\MemberResource\RelationManagers;
+// use App\Filament\Resources\MemberResource\RelationManagers;
 use App\Models\Member;
 use Filament\Forms;
 use Filament\Forms\Form;
+// use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Support\Facades\Gate;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
+// use Illuminate\Support\Facades\Gate;
+// use Illuminate\Database\Eloquent\Builder;
+// use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class MemberResource extends Resource
 {
@@ -20,19 +21,24 @@ class MemberResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    // protected static ?string $navigationGroup = 'Member Management';
+
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 Forms\Components\TextInput::make('name')
                     ->label('Name')
-                    ->required(),
+                    ->required()
+                    ->maxLength(255),
                 Forms\Components\TextInput::make('email')
                     ->label('Email')
                     ->email()
+                    ->unique('members', 'email', ignoreRecord: true)
                     ->required(),
                 Forms\Components\TextInput::make('phone')
                     ->label('Phone')
+                    ->tel()
                     ->required(),
                 Forms\Components\TextInput::make('address')
                     ->label('Address')
@@ -69,13 +75,13 @@ class MemberResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            // RelationManager\LoanRelationManager::class
         ];
     }
 
     public static function getNavigationGroup(): ?string
     {
-        return 'Member Management';
+        return 'Members';
     }
 
 

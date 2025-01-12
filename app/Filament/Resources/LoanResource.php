@@ -3,15 +3,15 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\LoanResource\Pages;
-use App\Filament\Resources\LoanResource\RelationManagers;
+// use App\Filament\Resources\LoanResource\RelationManagers;
 use App\Models\Loan;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
+// use Illuminate\Database\Eloquent\Builder;
+// use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class LoanResource extends Resource
 {
@@ -23,7 +23,38 @@ class LoanResource extends Resource
     {
         return $form
             ->schema([
-                //
+                Forms\Components\Select::make('member_id')
+                    ->label('Member')
+                    ->relationship('member', 'name')
+                    ->required(),
+                Forms\Components\TextInput::make('amount')
+                    ->label('Loan Amount')
+                    ->numeric()
+                    ->required(),
+                Forms\Components\TextInput::make('interest_rate')
+                    ->label('Interest Rate (%)')
+                    ->numeric()
+                    ->required(),
+                Forms\Components\TextInput::make('duration')
+                    ->label('Duration (Months)')
+                    ->numeric()
+                    ->required(),
+                Forms\Components\TextInput::make('total_payment')
+                    ->label('Total Payment')
+                    ->numeric()
+                    ->required(),
+                Forms\Components\Select::make('status')
+                    ->label('Status')
+                    ->options([
+                        'pending' => 'Pending',
+                        'approved' => 'Approved',
+                        'rejected' => 'Rejected',
+                    ])
+                    ->default('pending')
+                    ->required(),
+                Forms\Components\DatePicker::make('loan_date')
+                    ->label('Loan Date')
+                    ->required(),
             ]);
     }
 
@@ -31,7 +62,24 @@ class LoanResource extends Resource
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\TextColumn::make('member.name')
+                    ->label('Member Name'),
+                Tables\Columns\TextColumn::make('amount')
+                    ->label('Loan Amount')
+                    ->money('idr'),
+                Tables\Columns\TextColumn::make('interest_rate')
+                    ->label('Interest Rate (%)'),
+                Tables\Columns\TextColumn::make('duration')
+                    ->label('Duration (Months)'),
+                Tables\Columns\TextColumn::make('total_payment')
+                    ->label('Total Payment')
+                    ->money('idr'),
+                Tables\Columns\TextColumn::make('status')
+                    ->label('Status')
+                    ->badge(),
+                Tables\Columns\TextColumn::make('loan_date')
+                    ->label('Loan Date')
+                    ->date(),
             ])
             ->filters([
                 //
@@ -55,7 +103,7 @@ class LoanResource extends Resource
 
     public static function getNavigationGroup(): ?string
     {
-        return 'Loan Management';
+        return 'Finance';
     }
 
     public static function getPages(): array
