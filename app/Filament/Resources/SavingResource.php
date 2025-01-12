@@ -3,15 +3,15 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\SavingResource\Pages;
-use App\Filament\Resources\SavingResource\RelationManagers;
+// use App\Filament\Resources\SavingResource\RelationManagers;
 use App\Models\Saving;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
+// use Illuminate\Database\Eloquent\Builder;
+// use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class SavingResource extends Resource
 {
@@ -22,7 +22,34 @@ class SavingResource extends Resource
     {
         return $form
             ->schema([
-                //
+                Forms\Components\Select::make('member_id')
+                    ->label('Member')
+                    ->relationship('member', 'name')
+                    ->required(),
+                Forms\Components\TextInput::make('amount')
+                    ->label('Saving Amount')
+                    ->numeric()
+                    ->required(),
+                Forms\Components\Select::make('type')
+                    ->label('Type')
+                    ->options([
+                        'obligatory' => 'Obligatory',
+                        'voluntary' => 'Voluntary',
+                        'primary' => 'Primary',
+                    ])
+                    ->required(),
+                Forms\Components\DatePicker::make('date')
+                    ->label('Saving Date')
+                    ->required(),
+                Forms\Components\Select::make('status')
+                    ->label('Status')
+                    ->options([
+                        'pending' => 'Pending',
+                        'approved' => 'Approved',
+                        'rejected' => 'Rejected',
+                    ])
+                    ->default('pending')
+                    ->required(),
             ]);
     }
 
@@ -30,7 +57,19 @@ class SavingResource extends Resource
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\TextColumn::make('member.name')
+                    ->label('Member Name'),
+                Tables\Columns\TextColumn::make('amount')
+                    ->label('Saving Amount')
+                    ->money('idr'),
+                Tables\Columns\TextColumn::make('type')
+                    ->label('Type'),
+                Tables\Columns\TextColumn::make('date')
+                    ->label('Saving Date')
+                    ->date(),
+                Tables\Columns\TextColumn::make('status')
+                    ->label('Status')
+                    ->badge(),
             ])
             ->filters([
                 //
@@ -50,6 +89,11 @@ class SavingResource extends Resource
         return [
             //
         ];
+    }
+
+    public static function getNavigationGroup(): ?string
+    {
+        return 'Finance';
     }
 
     public static function getPages(): array

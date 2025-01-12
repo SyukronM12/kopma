@@ -16,4 +16,9 @@ class LoanLists extends ListRecords
             Actions\CreateAction::make(),
         ];
     }
+
+    protected function getRedirectUrl(): string
+    {
+        return LoanResource::getUrl('index');
+    }
 }
