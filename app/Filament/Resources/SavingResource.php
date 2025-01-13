@@ -72,7 +72,18 @@ class SavingResource extends Resource
                     ->badge(),
             ])
             ->filters([
-                //
+                Tables\Filters\SelectFilter::make('type')
+                    ->options([
+                        'obligatory' => 'Obligatory',
+                        'voluntary' => 'Voluntary',
+                        'primary' => 'Primary',
+                    ]),
+                Tables\Filters\SelectFilter::make('status')
+                    ->options([
+                        'pending' => 'Pending',
+                        'approved' => 'Approved',
+                        'rejected' => 'Rejected',
+                    ]),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
