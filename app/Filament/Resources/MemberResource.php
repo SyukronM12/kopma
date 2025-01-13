@@ -39,10 +39,13 @@ class MemberResource extends Resource
                 Forms\Components\TextInput::make('phone')
                     ->label('Phone')
                     ->tel()
-                    ->required(),
-                Forms\Components\TextInput::make('address')
+                    ->required()
+                    ->rule('regex:/^([0-9\s\-\+\(\)]*)$/')
+                    ->placeholder('Format: 08xxxxxxxxxx'),
+                Forms\Components\Textarea::make('address')
                     ->label('Address')
-                    ->required(),
+                    ->required()
+                    ->rows(3),
             ]);
     }
 

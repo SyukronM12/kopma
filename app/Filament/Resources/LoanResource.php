@@ -30,7 +30,14 @@ class LoanResource extends Resource
                 Forms\Components\TextInput::make('amount')
                     ->label('Loan Amount')
                     ->numeric()
-                    ->required(),
+                    ->required()
+                    ->live()
+                    ->afterStateUpdated(function ($state, callable $set, $get) {
+                        $interest = $get('interest_rate') ?? 0;
+                        $duration = $get('duration') ?? 0;
+                        $total = $state + ($state * ($interest / 100) * ($duration / 12));
+                        $set('total_payment', $total);
+                    }),
                 Forms\Components\TextInput::make('interest_rate')
                     ->label('Interest Rate (%)')
                     ->numeric()

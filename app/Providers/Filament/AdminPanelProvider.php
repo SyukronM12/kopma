@@ -3,6 +3,9 @@
 namespace App\Providers\Filament;
 
 use App\Http\Middleware\AdminRoleMiddleware;
+use App\Filament\Widgets\StatsOverviewWidget;
+use App\Filament\Widgets\LatestTransactionsWidget;
+use App\Filament\Widgets\FinancialChartWidget;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -28,6 +31,8 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('admin')
             ->login()
+            ->brandName('KOPMA Admin')
+            ->brandLogo(asset('images/logo.png'))
             ->colors([
                 'primary' => Color::Amber,
             ])
@@ -38,8 +43,16 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
             ->widgets([
-                Widgets\AccountWidget::class,
-                // Widgets\FilamentInfoWidget::class,
+                // Widgets\AccountWidget::class,
+                StatsOverviewWidget::class,
+                LatestTransactionsWidget::class,
+                FinancialChartWidget::class,
+            ])
+            ->navigationGroups([
+                'Members',
+                'Finance',
+                'Reports',
+                'Settings'
             ])
             ->middleware([
                 EncryptCookies::class,
