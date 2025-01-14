@@ -16,7 +16,7 @@ use Filament\Tables\Table;
 class SavingResource extends Resource
 {
     protected static ?string $model = Saving::class;
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-wallet';
 
     public static function form(Form $form): Form
     {
@@ -63,13 +63,24 @@ class SavingResource extends Resource
                     ->label('Saving Amount')
                     ->money('idr'),
                 Tables\Columns\TextColumn::make('type')
-                    ->label('Type'),
+                    ->label('Type')
+                    ->badge()
+                    ->color(fn(string $state): string => match ($state) {
+                        'primary' => 'info',
+                        'obligatory' => 'danger',
+                        'voluntary' => 'gray',
+                    }),
                 Tables\Columns\TextColumn::make('date')
                     ->label('Saving Date')
                     ->date(),
                 Tables\Columns\TextColumn::make('status')
                     ->label('Status')
-                    ->badge(),
+                    ->badge()
+                    ->color(fn(string $state): string => match ($state) {
+                        'approved' => 'success',
+                        'pending' => 'warning',
+                        'rejected' => 'danger',
+                    }),
             ])
             ->filters([
                 Tables\Filters\SelectFilter::make('type')

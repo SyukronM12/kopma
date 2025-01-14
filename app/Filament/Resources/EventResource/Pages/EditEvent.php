@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Filament\Resources\LoanResource\Pages;
+namespace App\Filament\Resources\EventResource\Pages;
 
-use App\Filament\Resources\LoanResource;
+use App\Filament\Resources\EventResource;
 use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
 
-class EditLoan extends EditRecord
+class EditEvent extends EditRecord
 {
-    protected static string $resource = LoanResource::class;
+    protected static string $resource = EventResource::class;
 
     protected function getHeaderActions(): array
     {
@@ -19,6 +19,6 @@ class EditLoan extends EditRecord
 
     protected function getRedirectUrl(): string
     {
-        return LoanResource::getUrl('index');
+        return EventResource::getUrl('index');
     }
 }

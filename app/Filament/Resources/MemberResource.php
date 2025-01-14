@@ -19,7 +19,7 @@ class MemberResource extends Resource
 {
     protected static ?string $model = Member::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-shield-check';
 
     // protected static ?string $navigationGroup = 'Member Management';
 
@@ -84,7 +84,7 @@ class MemberResource extends Resource
 
     public static function getNavigationGroup(): ?string
     {
-        return 'Members';
+        return 'Membership';
     }
 
 
