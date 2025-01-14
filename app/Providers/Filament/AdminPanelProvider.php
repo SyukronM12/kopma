@@ -49,9 +49,9 @@ class AdminPanelProvider extends PanelProvider
                 FinancialChartWidget::class,
             ])
             ->navigationGroups([
-                'Members',
+                'Membership',
                 'Finance',
-                'Reports',
+                'Management',
                 'Settings'
             ])
             ->middleware([

@@ -17,7 +17,7 @@ class LoanResource extends Resource
 {
     protected static ?string $model = Loan::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-arrows-right-left';
 
     public static function form(Form $form): Form
     {
@@ -83,7 +83,12 @@ class LoanResource extends Resource
                     ->money('idr'),
                 Tables\Columns\TextColumn::make('status')
                     ->label('Status')
-                    ->badge(),
+                    ->badge()
+                    ->color(fn(string $state): string => match ($state) {
+                        'approved' => 'success',
+                        'pending' => 'warning',
+                        'rejected' => 'danger',
+                    }),
                 Tables\Columns\TextColumn::make('loan_date')
                     ->label('Loan Date')
                     ->date(),
